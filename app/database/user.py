@@ -62,8 +62,8 @@ def update(pk, user_data):
     )    
 
     statement = """
-        Update user
-        Set first_name =?,
+        UPDATE user
+        SET first_name =?,
         last_name=?,
         hobbies=?
         WHERE id=?

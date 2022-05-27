@@ -25,7 +25,8 @@ if __name__ == "__main__":
     print("DELETE A USER")
     print("_" * 50)
     user_id = input("Type in the target user's ID:")
-    print("Delete the user shown below?")
+    
+    
     get_user(user_id)
     option = input ("[Y/N] : ")
     if option == "Y" or option == "y":

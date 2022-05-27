@@ -6,26 +6,26 @@ CREATE TABLE user (
     last_name VARCHAR(45) NOT NULL,
     hobbies TEXT,
     active BOOLEAN NOT NULL DEFAULT 1
-)
+);
 
 
 INSERT INTO user (
     first_name,
     last_name,
-    hobbies,
+    hobbies
 ) VALUES (
     "NAQUI",
     "DARBY",
     "HIKING"
-)
+);
 
 INSERT INTO user (
     first_name,
     last_name,
-    hobbies,
+    hobbies
 ) VALUES (
     "BILLY",
     "KAY",
     "BIKING"
-)
+);
 

@@ -5,6 +5,7 @@ from flask import (
 )
 from datetime import datetime
 from app.database import user
+import os.path
 
 VERSION = "1.0.0"
 
@@ -24,7 +25,7 @@ def version():
     out={
         "status": "ok",
         "version": VERSION,
-        "server_time": datetime.now(). strftime("%F %H:%M:%S")
+        "server_time": datetime.now().strftime("%F %H:%M:%S")
 
     }    
     return out
@@ -43,8 +44,14 @@ def get_users_by_id(pk):
     record = user.select_by_id(pk)
     out = {
         "status": "ok",
-        "users": record
+    
     }
+    if not record:
+        out["status"] = "error"
+        out["message"] = "not found"
+        return out, 404
+    else:
+        out["user"] = record    
     return out
 
 @app.post("/users")
@@ -53,14 +60,14 @@ def create_users():
     user.insert(user_data)
     return "", 204
 
-@app.put("/users")
-def update_users():
+@app.put("/users/<int:pk>")
+def update_users(pk):
     user_data = request.json
-    user.update(user_data)
+    user.update(user_data, pk)
     return "", 204
 
 @app.delete("/users/<int:pk>")
 def delete_user(pk):
-    user.delete(pk)
+    user.deactivate_user(pk)
     
     return "", 204

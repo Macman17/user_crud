@@ -63,7 +63,7 @@ def create_users():
 @app.put("/users/<int:pk>")
 def update_users(pk):
     user_data = request.json
-    user.update(user_data, pk)
+    user.update(pk, user_data)
     return "", 204
 
 @app.delete("/users/<int:pk>")
